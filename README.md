@@ -17,13 +17,19 @@ Symbols folders in ~/Library/Developer/Xcode/iOS DeviceSupport
 | 13.4.1 (17E262)        |
 | 13.5.1 (17F80)         |
 | 13.6 (17G68) arm64e    |
+| 13.6.1 (17G80)         |
 | 13.7 (17H35) arm64e    |
 | 14.0 (18A373) arm64e   |
-| 14.0.1 (18A393)        |
+| 14.0.1 (18A393) arm64e |
+| 14.2.1 (18B121) arm64e |
+| 14.4.1 (18D61) arm64e  |
+| 14.4.2 (18D70) arm64e  |
 
 
 
-Google Drive: https://drive.google.com/drive/folders/1pkdZpu0bME4wXFd1CQhuIhjUkWVKNDkO
+
+
+~~Google Drive: https://drive.google.com/drive/folders/1pkdZpu0bME4wXFd1CQhuIhjUkWVKNDkO~~
 
 
 
