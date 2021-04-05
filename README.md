@@ -22,6 +22,8 @@ Symbols folders in ~/Library/Developer/Xcode/iOS DeviceSupport
 | 14.0 (18A373) arm64e   |
 | 14.0.1 (18A393) arm64e |
 | 14.2.1 (18B121) arm64e |
+| 14.3 (18C66)           |
+| 14.4 (18D52) arm64e    |
 | 14.4.1 (18D61) arm64e  |
 | 14.4.2 (18D70) arm64e  |
 
