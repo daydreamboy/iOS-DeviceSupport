@@ -258,7 +258,7 @@ $ clang++ -o dsc_extractor dsc_extractor.cpp
 
 
 
-#### e. 提前dyld_shared_cache_arm64e文件
+### (4) 提取dyld_shared_cache_arm64e文件
 
 执行下面命令
 
@@ -278,21 +278,35 @@ dyld_shared_cache_extract_dylibs_progress() => 0
 
 注意
 
-> 如果没有进度，打印“dyld_shared_cache_extract_dylibs_progress() => 0”，说明存在问题。很可能提取的dyld_shared_cache_arm64e文件的版本，要高于Xcode的版本。比如说上面固件是15.0.1，但是Xcode版本还是12.5，不是Xcode 13.1。尽可能使用最新版本的Xcode，然后执行dsc_extractor工具
+> 如果没有进度，仅打印“dyld_shared_cache_extract_dylibs_progress() => 0”，说明存在问题。
+>
+> 很可能提取的dyld_shared_cache_arm64e文件的版本，要高于Xcode的版本。比如说上面固件是15.0.1，但是Xcode版本还是12.5，不是Xcode 13.1。尽可能使用最新版本的Xcode，然后执行dsc_extractor工具
 
 
 
+### (5) 放置Symbol文件
 
+按照iOS DeviceSupport规范，添加2个文件
 
+* `.finalized`。这个文件copy下已有的，就可以了
+* `Info.plist`。这个文件自己修改下，如下
 
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>DSC Extractor Version</key>
+	<string>dyld-852.2</string>
+	<key>DateCollected</key>
+	<date>2021-11-04T16:25:01Z</date>
+	<key>Version</key>
+	<string>15.0.1 (19A348)</string>
+</dict>
+</plist>
+```
 
-
-
-
-
-
-
-
+将文件夹重命名为15.0.1 (19A348) arm64e，放置到~/Library/Developer/Xcode/iOS DeviceSupport。
 
 
 
