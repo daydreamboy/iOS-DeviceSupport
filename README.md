@@ -128,10 +128,157 @@ Apple的opensource网站提供下载dyld文件，地址是：https://opensource.
 ```shell
 $ wget https://opensource.apple.com/tarballs/dyld/dyld-852.2.tar.gz
 $ tar -xvzf dyld-852.2.tar.gz
+```
 
+dyld文件，由于更新了很多版本，因此解压后的文件结构可能会不一样。
+
+
+
+#### b. 从dsc_extractor.cpp获取extract代码
+
+找到需要的dsc_extractor.cpp，位置如下
+
+```
+dyld-852.2/dyld3/shared-cache/dsc_extractor.cpp
+```
+
+说明
+
+> 如果有dyld.xcodeproj，可以打开搜一下dsc_extractor.cpp
+
+
+
+在dsc_extractor.cpp的代码中，找到下面一段被if条件编译注释掉的代码，如下
+
+```c
+#if 0
+// test program
+#include <stdio.h>
+#include <stddef.h>
+#include <dlfcn.h>
+
+
+typedef int (*extractor_proc)(const char* shared_cache_file_path, const char* extraction_root_path,
+                              void (^progress)(unsigned current, unsigned total));
+
+int main(int argc, const char* argv[])
+{
+    if ( argc != 3 ) {
+        fprintf(stderr, "usage: dsc_extractor <path-to-cache-file> <path-to-device-dir>\n");
+        return 1;
+    }
+
+    //void* handle = dlopen("/Volumes/my/src/dyld/build/Debug/dsc_extractor.bundle", RTLD_LAZY);
+    void* handle = dlopen("/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/usr/lib/dsc_extractor.bundle", RTLD_LAZY);
+    if ( handle == NULL ) {
+        fprintf(stderr, "dsc_extractor.bundle could not be loaded\n");
+        return 1;
+    }
+
+    extractor_proc proc = (extractor_proc)dlsym(handle, "dyld_shared_cache_extract_dylibs_progress");
+    if ( proc == NULL ) {
+        fprintf(stderr, "dsc_extractor.bundle did not have dyld_shared_cache_extract_dylibs_progress symbol\n");
+        return 1;
+    }
+
+    int result = (*proc)(argv[1], argv[2], ^(unsigned c, unsigned total) { printf("%d/%d\n", c, total); } );
+    fprintf(stderr, "dyld_shared_cache_extract_dylibs_progress() => %d\n", result);
+    return 0;
+}
+
+
+#endif
+```
+
+上面代码的大致逻辑是：在本地的Xcode.app中找到dsc_extractor.bundle这个动态库，加载到内存，然后通过dlsym拿到dyld_shared_cache_extract_dylibs_progress函数，然后用这个函数对dyld_shared_cache_arm64e文件进行提取。
+
+另外，代码中清楚说明了，如何使用这个命令行工具
+
+> usage: dsc_extractor <path-to-cache-file> <path-to-device-dir>
+
+
+
+#### c. 准备extract代码
+
+有了上面现成的代码，那么copy&paste一下，变成自己的dsc_extractor.cpp文件，如下
+
+```cpp
+#include <stdio.h>
+#include <stddef.h>
+#include <dlfcn.h>
+
+
+typedef int (*extractor_proc)(const char* shared_cache_file_path, const char* extraction_root_path,
+                              void (^progress)(unsigned current, unsigned total));
+
+int main(int argc, const char* argv[])
+{
+    if ( argc != 3 ) {
+        fprintf(stderr, "usage: dsc_extractor <path-to-cache-file> <path-to-device-dir>\n");
+        return 1;
+    }
+
+    //void* handle = dlopen("/Volumes/my/src/dyld/build/Debug/dsc_extractor.bundle", RTLD_LAZY);
+    void* handle = dlopen("/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/usr/lib/dsc_extractor.bundle", RTLD_LAZY);
+    if ( handle == NULL ) {
+        fprintf(stderr, "dsc_extractor.bundle could not be loaded\n");
+        return 1;
+    }
+
+    extractor_proc proc = (extractor_proc)dlsym(handle, "dyld_shared_cache_extract_dylibs_progress");
+    if ( proc == NULL ) {
+        fprintf(stderr, "dsc_extractor.bundle did not have dyld_shared_cache_extract_dylibs_progress symbol\n");
+        return 1;
+    }
+
+    int result = (*proc)(argv[1], argv[2], ^(unsigned c, unsigned total) { printf("%d/%d\n", c, total); } );
+    fprintf(stderr, "dyld_shared_cache_extract_dylibs_progress() => %d\n", result);
+    return 0;
+}
+```
+
+编译之前，检查下这个路径是否有dsc_extractor.bundle文件
+
+```shell
+$ ls -l /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/usr/lib/dsc_extractor.bundle
+-rwxrwxr-x  1 wesley_chen  staff  567024 Apr 10  2021 /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/usr/lib/dsc_extractor.bundle
 ```
 
 
+
+#### d. 生成dsc_extractor命令行工具
+
+执行下面的命令
+
+```shell
+$ clang++ -o dsc_extractor dsc_extractor.cpp
+```
+
+如果顺利的话，会得到名为dsc_extractor的可执行文件。
+
+
+
+#### e. 提前dyld_shared_cache_arm64e文件
+
+执行下面命令
+
+```shell
+$ ./dsc_extractor dyld_shared_cache_arm64e arm64e/
+0/2369
+1/2369
+2/2369
+3/2369
+4/2369
+5/2369
+...
+dyld_shared_cache_extract_dylibs_progress() => 0
+```
+
+如果顺利的话，会输出进度，并打印“dyld_shared_cache_extract_dylibs_progress() => 0”。
+
+注意
+
+> 如果没有进度，打印“dyld_shared_cache_extract_dylibs_progress() => 0”，说明存在问题。很可能提取的dyld_shared_cache_arm64e文件的版本，要高于Xcode的版本。比如说上面固件是15.0.1，但是Xcode版本还是12.5，不是Xcode 13.1。尽可能使用最新版本的Xcode，然后执行dsc_extractor工具
 
 
 
