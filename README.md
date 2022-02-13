@@ -48,6 +48,8 @@ Symbols folders in ~/Library/Developer/Xcode/iOS DeviceSupport
 | 15.1.1 (19B81) arm64e  |
 | 15.2 (19C56) arm64e    |
 | 15.2.1 (19C63) arm64e  |
+| 15.3 (19D50) arm64e    |
+| 15.3.1 (19D52) arm64e  |
 
 
 
