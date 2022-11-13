@@ -64,6 +64,7 @@ Symbols folders in ~/Library/Developer/Xcode/iOS DeviceSupport
 | 16.0.2 (20A380) arm64e |
 | 16.0.3 (20A392) arm64e |
 | 16.1 (20B82) arm64e    |
+| 16.1.1 (20B101) arm64e |
 
 
 
