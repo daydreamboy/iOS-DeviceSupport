@@ -73,6 +73,7 @@ Symbols folders in ~/Library/Developer/Xcode/iOS DeviceSupport
 | 16.4.1 (20E252) arm64e |
 | 16.5 (20F66) arm64e    |
 | 16.5.1 (20F75) arm64e  |
+| 16.6 (20G75) arm64e    |
 
 
 
