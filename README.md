@@ -99,6 +99,7 @@ Symbols folders in ~/Library/Developer/Xcode/iOS DeviceSupport
 | iPhone12,1 17.7 (21H16)     |
 | iPhone12,1 18.0 (22A3354)   |
 | iPhone12,1 18.0.1 (22A3370) |
+| iPhone12,1 18.1 (22B83)     |
 
 
 
