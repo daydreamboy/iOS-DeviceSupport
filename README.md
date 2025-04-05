@@ -22,6 +22,7 @@ Symbols folders in ~/Library/Developer/Xcode/iOS DeviceSupport
 | 12.4.1 (16G102)             |
 | 12.4.8 (16G201)             |
 | 12.5.1 (16H22)              |
+| 12.5.7 (16H81)              |
 | 13.1 (17A5821e)             |
 | 13.1.2 (17A861)             |
 | 13.3 (17C54)                |
