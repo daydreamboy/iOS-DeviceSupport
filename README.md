@@ -118,6 +118,7 @@ Symbols folders in ~/Library/Developer/Xcode/iOS DeviceSupport
 | iPhone12,1 18.6.2 (22G100)  |
 | iPhone12,1 18.7 (22H20)     |
 | iPhone12,1 18.7.1 (22H31)   |
+| iPhone12,1 18.7.2 (22H124)  |
 | iPhone14,8 26.0 (23A341)    |
 | iPhone14,8 26.0.1 (23A355)  |
 | iPhone14,8 26.1 (23B85)     |
