@@ -122,6 +122,7 @@ Symbols folders in ~/Library/Developer/Xcode/iOS DeviceSupport
 | iPhone14,8 26.0 (23A341)    |
 | iPhone14,8 26.0.1 (23A355)  |
 | iPhone14,8 26.1 (23B85)     |
+| iPhone14,8 26.2.1 (23C71)   |
 
 
 
