@@ -134,6 +134,7 @@ Symbols folders in ~/Library/Developer/Xcode/iOS DeviceSupport
 | iPhone14,8 26.4 (23E246)    |
 | iPhone14,8 26.4.1 (23E254)  |
 | iPhone14,8 26.4.2 (23E261)  |
+| iPhone14,8 26.5 (23F77)     |
 
 
 
