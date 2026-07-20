@@ -125,6 +125,7 @@ Symbols folders in ~/Library/Developer/Xcode/iOS DeviceSupport
 | 18.7.6 (22H320) arm64e      |
 | iPhone12,1 18.7.7 (22H340)  |
 | iPhone12,1 18.7.8 (22H352)  |
+| 18.7.9 (22H355) arm64e      |
 | iPhone14,8 26.0 (23A341)    |
 | iPhone14,8 26.0.1 (23A355)  |
 | iPhone14,8 26.1 (23B85)     |
@@ -135,6 +136,8 @@ Symbols folders in ~/Library/Developer/Xcode/iOS DeviceSupport
 | iPhone14,8 26.4.1 (23E254)  |
 | iPhone14,8 26.4.2 (23E261)  |
 | iPhone14,8 26.5 (23F77)     |
+| 26.5.1 (23F81) arm64e       |
+| iPhone14,8 26.5.2 (23F84)   |
 
 
 
