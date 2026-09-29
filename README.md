@@ -139,6 +139,10 @@ Symbols folders in ~/Library/Developer/Xcode/iOS DeviceSupport
 | 26.5.1 (23F81) arm64e       |
 | iPhone14,8 26.5.2 (23F84)   |
 | iPhone14,8 26.6 (23G71)     |
+| iPhone14,8 26.6.1 (23G83)   |
+| iPhone14,8 26.6.2 (23G90)   |
+| iPhone14,8 26.7 (23H24)     |
+| iPhone14,8 27.0 (24A437)    |
 
 
 
