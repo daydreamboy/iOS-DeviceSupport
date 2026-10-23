@@ -142,7 +142,13 @@ Symbols folders in ~/Library/Developer/Xcode/iOS DeviceSupport
 | iPhone14,8 26.6.1 (23G83)   |
 | iPhone14,8 26.6.2 (23G90)   |
 | iPhone14,8 26.7 (23H24)     |
+| iPhone14,5 26.7.1 (23H30)   |
 | iPhone14,8 27.0 (24A437)    |
+| iPhone14,8 27.0.1 (24A446)  |
+
+说明
+
+> 将上面7z文件解压放入~/Library/Developer/Xcode/iOS DeviceSupport文件夹中，去掉机型前缀，例如iPhone14,8 27.0 (24A437)改成27.0 (24A437)
 
 
 
